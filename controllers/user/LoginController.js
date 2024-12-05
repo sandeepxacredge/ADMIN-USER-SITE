@@ -1,4 +1,4 @@
-const { admin, db } = require('../config/firebase');
+const { admin, db } = require('../../config/userfirebase');
 const jwt = require('jsonwebtoken');
 const NodeCache = new require('node-cache');
 const tokenCache = new NodeCache({ stdTTL: 300 });

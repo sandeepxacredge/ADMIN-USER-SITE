@@ -1,11 +1,8 @@
 const express = require('express');
 const router = express.Router();
-
-const projectController = require('../controllers/ProjectController');
-
-const { isAuthenticated } = require('../controllers/LoginController');
-
-const { upload, uploadFields } = require('../middleware/UploadMiddleware');
+const projectController = require('../../controllers/admin/projectController');
+const { isAuthenticated } = require('../../controllers/admin/loginController');
+const { upload, uploadFields } = require('../../middleware/admin/UploadMiddleware');
 
 // Route to create a new project
 // This route is protected and requires the user to be authenticated

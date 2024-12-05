@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const amenityController = require('../controllers/AmenityController');
-const { upload, uploadFields } = require('../middleware/UploadMiddleware');
+const amenityController = require('../../controllers/admin/amenityController');
+const { upload, uploadFields } = require('../../middleware/admin/UploadMiddleware');
 
 router.post('/create',
   upload.fields([{ name: 'logoUrl', maxCount: 1 }]),

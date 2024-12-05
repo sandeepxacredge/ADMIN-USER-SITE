@@ -1,5 +1,5 @@
-const SearchService = require('../services/SearchService');
-const { db } = require('../config/firebase');
+const SearchService = require('../../services/user/SearchService');
+const { db } = require('../../config/userfirebase');
 
 class SearchController {
   async search(req, res) {

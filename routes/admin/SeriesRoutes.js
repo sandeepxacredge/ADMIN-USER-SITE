@@ -1,11 +1,8 @@
 const express = require('express');
 const router = express.Router();
-
-const seriesController = require('../controllers/SeriesController');
-
-const { isAuthenticated } = require('../controllers/LoginController');
-
-const { upload, uploadFields } = require('../middleware/UploadMiddleware');
+const seriesController = require('../../controllers/admin/seriesController');
+const { isAuthenticated } = require('../../controllers/admin/loginController');
+const { upload, uploadFields } = require('../../middleware/admin/UploadMiddleware');
 
 // Route to create a new series
 // This route is protected and requires the user to be authenticated

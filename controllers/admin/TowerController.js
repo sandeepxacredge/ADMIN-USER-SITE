@@ -1,5 +1,5 @@
-const Tower = require('../models/TowerModel');
-const { db } = require('../config/firebase');
+const Tower = require('../../models/admin/TowerModel');
+const { db } = require('../../config/adminfirebase');
 
 exports.createTower = async (req, res) => {
   try {

@@ -1,6 +1,6 @@
-const Amenity = require('../models/AmenityModel');
-const { db } = require('../config/firebase');
-const { uploadMultipleFiles, deleteFromFirebase } = require('../utils/FilesUpload');
+const Amenity = require('../../models/admin/AmenityModel');
+const { db } = require('../../config/adminfirebase');
+const { uploadMultipleFiles, deleteFromFirebase } = require('../../utils/admin/FilesUpload');
 
 exports.createAmenity = async (req, res) => {
   try {

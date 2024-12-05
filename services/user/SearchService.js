@@ -3,7 +3,7 @@ const algolia = require('algoliasearch');
 class SearchService {
   constructor() {
     try {
-      if (!process.env.ALGOLIA_APP_ID || !process.env.ALGOLIA_ADMIN_KEY) {
+      if (!process.env.USER_ALGOLIA_APP_ID || !process.env.USER_ALGOLIA_ADMIN_KEY) {
         console.error('Missing Algolia credentials in environment variables');
         this.client = null;
         this.propertyIndex = null;
@@ -12,8 +12,8 @@ class SearchService {
 
       // Initialize the client
       this.client = algolia(
-        process.env.ALGOLIA_APP_ID,
-        process.env.ALGOLIA_ADMIN_KEY
+        process.env.USER_ALGOLIA_APP_ID,
+        process.env.USER_ALGOLIA_ADMIN_KEY
       );
 
       // Initialize the index

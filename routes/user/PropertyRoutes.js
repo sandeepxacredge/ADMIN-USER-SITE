@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const PropertyController = require('../controllers/PropertyController');
-const { isAuthenticated } = require('../controllers/LoginController');
-const { uploadPropertyMedia } = require('../middlewares/UploadMiddleware');
+const PropertyController = require('../../controllers/user/PropertyController');
+const { isAuthenticated } = require('../../controllers/user/LoginController');
+const { uploadPropertyMedia } = require('../../middleware/user/UploadMiddleware');
 
 router.post('/', isAuthenticated, uploadPropertyMedia, PropertyController.createProperty);
 router.put('/:id', isAuthenticated, uploadPropertyMedia, PropertyController.updateProperty);

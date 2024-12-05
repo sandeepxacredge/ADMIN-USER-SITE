@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { isAuthenticated } = require('../controllers/LoginController');
+const { isAuthenticated } = require('../../controllers/user/LoginController');
 
 exports.verifyToken = (req, res, next) => {
 

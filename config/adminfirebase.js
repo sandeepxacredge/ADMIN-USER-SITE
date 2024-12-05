@@ -1,18 +1,18 @@
 const admin = require('firebase-admin');
 require('dotenv').config();
 
-const serviceAccount = {
-  project_id: process.env.FIREBASE_PROJECT_ID,
-  private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-  client_email: process.env.FIREBASE_CLIENT_EMAIL,
+const adminServiceAccount = {
+  projectId: process.env.ADMIN_FIREBASE_PROJECT_ID,
+  privateKey: process.env.ADMIN_FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+  clientEmail: process.env.ADMIN_FIREBASE_CLIENT_EMAIL
 };
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET
-});
+const adminApp = admin.initializeApp({
+  credential: admin.credential.cert(adminServiceAccount),
+  storageBucket: process.env.ADMIN_FIREBASE_STORAGE_BUCKET
+}, 'admin');
 
-const db = admin.firestore();
-const bucket = admin.storage().bucket();
+const adminDb = adminApp.firestore();
+const adminBucket = adminApp.storage().bucket();
 
-module.exports = { admin, db, bucket };
+module.exports = { admin: adminApp, db: adminDb, bucket: adminBucket };

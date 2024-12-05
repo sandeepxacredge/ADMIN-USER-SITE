@@ -1,8 +1,8 @@
-const { db } = require('../config/firebase');
-const Developer = require('../models/DeveloperModel');
-const Project = require('../models/ProjectModel');
-const Series = require('../models/SeriesModel');
-const Tower = require('../models/TowerModel');
+const { db } = require('../../config/adminfirebase');
+const Developer = require('../../models/admin/DeveloperModel');
+const Project = require('../../models/admin/ProjectModel');
+const Series = require('../../models/admin/SeriesModel');
+const Tower = require('../../models/admin/TowerModel');
 
 exports.getDeveloperStats = async (req, res) => {
   try {

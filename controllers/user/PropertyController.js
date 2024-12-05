@@ -1,7 +1,7 @@
-const Property = require('../models/PropertyModel');
-const { db } = require('../config/firebase');
-const { uploadMultipleFiles, deleteMultipleFiles } = require('../utils/FilesUpload');
-const SearchService = require('../services/SearchService');
+const Property = require('../../models/user/PropertyModel');
+const { db } = require('../../config/userfirebase');
+const { uploadMultipleFiles, deleteMultipleFiles } = require('../../utils/user/FilesUpload');
+const SearchService = require('../../services/user/SearchService');
 
 // Function to create a new property with associated files
 exports.createProperty = async (req, res) => {

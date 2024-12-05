@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const authController = require('../controllers/LoginController');
+const authController = require('../../controllers/user/LoginController');
 
 router.post('/verify-firebase-token', authController.verifyFirebaseToken);
 router.post('/logout', authController.isAuthenticated, authController.logout);
