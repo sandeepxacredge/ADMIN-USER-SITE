@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const developerController = require('../../controllers/admin/developerController');
-const { isAuthenticated } = require('../../controllers/admin/loginController');
+const developerController = require('../../controllers/admin/DeveloperController');
+const { isAuthenticated } = require('../../controllers/admin/LoginController');
 const { upload, uploadFields } = require('../../middleware/admin/UploadMiddleware');
 
 // Route to create a new developer and handles file uploads

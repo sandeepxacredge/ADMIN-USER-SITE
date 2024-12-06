@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const authController = require('../../controllers/admin/loginController');
+const authController = require('../../controllers/admin/LoginController');
 const { verifyToken } = require('../../middleware/admin/LoginMiddleware');
 
 // Route to verify the user's email address

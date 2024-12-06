@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const seriesController = require('../../controllers/admin/seriesController');
-const { isAuthenticated } = require('../../controllers/admin/loginController');
+const seriesController = require('../../controllers/admin/SeriesController');
+const { isAuthenticated } = require('../../controllers/admin/LoginController');
 const { upload, uploadFields } = require('../../middleware/admin/UploadMiddleware');
 
 // Route to create a new series

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const projectController = require('../../controllers/admin/projectController');
-const { isAuthenticated } = require('../../controllers/admin/loginController');
+const projectController = require('../../controllers/admin/ProjectController');
+const { isAuthenticated } = require('../../controllers/admin/LoginController');
 const { upload, uploadFields } = require('../../middleware/admin/UploadMiddleware');
 
 // Route to create a new project

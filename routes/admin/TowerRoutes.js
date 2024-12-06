@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const towerController = require('../../controllers/admin/towerController');
-const { isAuthenticated } = require('../../controllers/admin/loginController');
+const towerController = require('../../controllers/admin/TowerController');
+const { isAuthenticated } = require('../../controllers/admin/LoginController');
 
 // Route to create a new tower
 // This route is protected and requires the user to be authenticated

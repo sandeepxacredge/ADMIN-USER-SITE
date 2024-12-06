@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const amenityController = require('../../controllers/admin/amenityController');
+const amenityController = require('../../controllers/admin/AmenityController');
 const { upload, uploadFields } = require('../../middleware/admin/UploadMiddleware');
 
 router.post('/create',
