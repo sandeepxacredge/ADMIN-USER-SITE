@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const dashboardController = require('../../controllers/admin/DashboardController');
-const { isAuthenticated } = require('../../controllers/admin/loginController');
+const { isAuthenticated } = require('../../controllers/admin/LoginController');
 
 // Route to get statistics for developers
 router.get('/developers/stats', isAuthenticated, dashboardController.getDeveloperStats);
