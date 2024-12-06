@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { isAuthenticated } = require('../../controllers/admin/loginController');
+const { isAuthenticated } = require('../../controllers/admin/LoginController');
 
 // Middleware to verify the JWT token provided in the request headers
 exports.verifyToken = (req, res, next) => {
