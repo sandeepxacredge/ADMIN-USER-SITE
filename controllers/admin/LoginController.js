@@ -71,7 +71,7 @@ exports.verifyOTP = async (req, res) => {
     await admin.firestore().collection('otps').doc(email).delete();
 
     const expiresIn = rememberMe ? '7d' : '24h';
-    const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn });
+    const token = jwt.sign({ email: email, role: 'ADMIN' }, process.env.JWT_SECRET, { expiresIn });
 
     const expirationDate = new Date(Date.now() + (rememberMe ? 7 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000));
     await admin.firestore().collection('tokens').doc(email).set({
@@ -79,10 +79,19 @@ exports.verifyOTP = async (req, res) => {
       expiresAt: admin.firestore.Timestamp.fromDate(expirationDate)
     });
 
+    // res.cookie('token', token, {
+    //   httpOnly: true,
+    //   secure: true,
+    //   sameSite: 'none',
+    //   maxAge: rememberMe ? 7 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000,
+    // });
+
     res.cookie('token', token, {
       httpOnly: true,
       secure: true,
       sameSite: 'none',
+      domain: '.onrender.com',
+      path: '/',
       maxAge: rememberMe ? 7 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000,
     });
 
@@ -110,7 +119,7 @@ exports.isAuthenticated = async (req, res, next) => {
 
     const cachedToken = tokenCache.get(decoded.email);
     if (cachedToken === token) {
-      req.user = { email: decoded.email };
+    req.user = { email: decoded.email, role: decoded.role };
       return next();
     }
 
@@ -121,7 +130,7 @@ exports.isAuthenticated = async (req, res, next) => {
 
     tokenCache.set(decoded.email, token);
 
-    req.user = { email: decoded.email };
+    req.user = { email: decoded.email, role: decoded.role };
     next();
   } catch (error) {
     console.error('Error in isAuthenticated:', error);

@@ -13,5 +13,5 @@ router.get('/all', amenityController.getAllAmenities);
 module.exports = router;
 
 
-// const { verifyUserForAdminRoutes } = require('../shared/crossSiteAuth');
-// router.get('/all/public',verifyUserForAdminRoutes, amenityController.getAllAmenities);
+const { verifyUserForAdminRoutes } = require('../../shared/crossSiteAuth');
+router.get('/all/public',verifyUserForAdminRoutes, amenityController.getAllAmenities);

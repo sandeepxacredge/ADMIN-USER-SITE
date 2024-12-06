@@ -26,5 +26,5 @@ router.put('/:id', isAuthenticated, towerController.updateTower);
 module.exports = router;
 
 
-// const { verifyUserForAdminRoutes } = require('../shared/crossSiteAuth');
-// router.get('/public',verifyUserForAdminRoutes, towerController.getAllTowers);
+const { verifyUserForAdminRoutes } = require('../../shared/crossSiteAuth');
+router.get('/public',verifyUserForAdminRoutes, towerController.getAllTowers);

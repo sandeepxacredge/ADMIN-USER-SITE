@@ -13,6 +13,5 @@ router.delete('/:id', isAuthenticated, PropertyController.deleteProperty);
 
 module.exports = router;
 
-//route for crossauth system
-// const { verifyAdminForUserRoutes } = require('../shared/crossSiteAuth');
-// router.get('/private', verifyAdminForUserRoutes, PropertyController.getProperties);
+const { verifyAdminForUserRoutes } = require('../../shared/crossSiteAuth');
+router.get('/private', verifyAdminForUserRoutes, PropertyController.getProperties);

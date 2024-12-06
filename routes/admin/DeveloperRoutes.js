@@ -23,14 +23,14 @@ module.exports = router;
 
 
 
-// const { verifyUserForAdminRoutes } = require('../shared/crossSiteAuth');
+const { verifyUserForAdminRoutes } = require('../../shared/crossSiteAuth');
 
-// router.get('/public', 
-//     (req, res, next) => {
-//         console.log('Cookies:', req.cookies);
-//         console.log('Authorization Header:', req.headers.authorization);
-//         next();
-//     }, 
-//     verifyUserForAdminRoutes, 
-//     developerController.getAllDevelopers
-// );
+router.get('/public', 
+    (req, res, next) => {
+        console.log('Cookies:', req.cookies);
+        console.log('Authorization Header:', req.headers.authorization);
+        next();
+    }, 
+    verifyUserForAdminRoutes, 
+    developerController.getAllDevelopers
+);

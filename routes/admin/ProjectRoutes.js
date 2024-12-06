@@ -29,5 +29,5 @@ router.put('/:id', isAuthenticated, upload.fields(uploadFields), projectControll
 module.exports = router;
 
 
-// const { verifyUserForAdminRoutes } = require('../shared/crossSiteAuth');
-// router.get('/public',verifyUserForAdminRoutes, projectController.getAllProjects);
+const { verifyUserForAdminRoutes } = require('../../shared/crossSiteAuth');
+router.get('/public',verifyUserForAdminRoutes, projectController.getAllProjects);

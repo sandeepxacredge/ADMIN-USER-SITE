@@ -16,7 +16,7 @@ exports.verifyFirebaseToken = async (req, res) => {
     }
 
     const expiresIn = rememberMe ? '7d' : '24h';
-    const token = jwt.sign({ phoneNumber }, process.env.JWT_SECRET, { expiresIn });
+    const token = jwt.sign({ phoneNumber, role: 'USER' }, process.env.JWT_SECRET, { expiresIn });
 
     const expirationDate = new Date(Date.now() + (rememberMe ? 7 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000));
     
@@ -40,10 +40,19 @@ exports.verifyFirebaseToken = async (req, res) => {
       });
     }
 
+    // res.cookie('token', token, {
+    //   httpOnly: true,
+    //   secure: true,
+    //   sameSite: 'none',
+    //   maxAge: rememberMe ? 7 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000,
+    // });
+
     res.cookie('token', token, {
       httpOnly: true,
       secure: true,
       sameSite: 'none',
+      domain: '.onrender.com',
+      path: '/',
       maxAge: rememberMe ? 7 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000,
     });
 
@@ -74,15 +83,26 @@ exports.isAuthenticated = async (req, res, next) => {
       return res.status(401).json({ message: "Invalid token." });
     }
 
-    const cachedToken = tokenCache.get(decoded.phoneNumber);
+    // Get the identifier based on role
+    const identifier = decoded.role === 'ADMIN' ? decoded.email : decoded.phoneNumber;
+    
+    if (!identifier) {
+      return res.status(401).json({ message: "Invalid token format." });
+    }
+
+    const cachedToken = tokenCache.get(identifier);
     if (cachedToken === token) {
-      req.user = { phoneNumber: decoded.phoneNumber };
+      req.user = { 
+        phoneNumber: decoded.phoneNumber,
+        email: decoded.email,
+        role: decoded.role
+      };
       return next();
     }
 
     const tokenDoc = await db
       .collection('tokens')
-      .doc(decoded.phoneNumber)
+      .doc(identifier)
       .get();
 
     if (!tokenDoc.exists || tokenDoc.data().token !== token || 
@@ -90,8 +110,12 @@ exports.isAuthenticated = async (req, res, next) => {
       return res.status(401).json({ message: "Invalid or expired token." });
     }
 
-    tokenCache.set(decoded.phoneNumber, token);
-    req.user = { phoneNumber: decoded.phoneNumber };
+    tokenCache.set(identifier, token);
+    req.user = { 
+      phoneNumber: decoded.phoneNumber,
+      email: decoded.email,
+      role: decoded.role
+    };
     next();
   } catch (error) {
     console.error('Auth error:', error);

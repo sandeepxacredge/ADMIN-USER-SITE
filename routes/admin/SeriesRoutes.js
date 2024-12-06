@@ -29,5 +29,5 @@ router.put('/:id', isAuthenticated, upload.fields(uploadFields), seriesControlle
 module.exports = router;
 
 
-// const { verifyUserForAdminRoutes } = require('../shared/crossSiteAuth');
-// router.get('/public',verifyUserForAdminRoutes, seriesController.getAllSeries);
+const { verifyUserForAdminRoutes } = require('../../shared/crossSiteAuth');
+router.get('/public',verifyUserForAdminRoutes, seriesController.getAllSeries);
