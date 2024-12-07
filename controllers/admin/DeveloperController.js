@@ -1,5 +1,5 @@
 const Developer = require('../../models/admin/DeveloperModel');
-const { db } = require('../../config/adminfirebase');
+const { db } = require('../../config/firebase');
 const { uploadMultipleFiles, deleteFromFirebase } = require('../../utils/admin/FilesUpload');
 
 exports.createDeveloper = async (req, res) => {

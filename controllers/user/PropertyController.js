@@ -1,5 +1,5 @@
 const Property = require('../../models/user/PropertyModel');
-const { db } = require('../../config/userfirebase');
+const { db } = require('../../config/firebase');
 const { uploadMultipleFiles, deleteMultipleFiles } = require('../../utils/user/FilesUpload');
 const SearchService = require('../../services/user/SearchService');
 

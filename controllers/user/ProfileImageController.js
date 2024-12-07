@@ -1,4 +1,4 @@
-const { db } = require('../../config/userfirebase');
+const { db } = require('../../config/firebase');
 const { uploadToFirebase, deleteFromFirebase } = require('../../utils/user/FilesUpload');
 
 exports.uploadProfileImage = async (req, res) => {

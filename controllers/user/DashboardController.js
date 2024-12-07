@@ -1,4 +1,4 @@
-const { db } = require('../../config/userfirebase');
+const { db } = require('../../config/firebase');
 const Property = require('../../models/user/PropertyModel');
 
 exports.getUserStats = async (req, res) => {

@@ -1,4 +1,4 @@
-const { db } = require('../../config/adminfirebase');
+const { db } = require('../../config/firebase');
 const Developer = require('../../models/admin/DeveloperModel');
 const Project = require('../../models/admin/ProjectModel');
 const Series = require('../../models/admin/SeriesModel');

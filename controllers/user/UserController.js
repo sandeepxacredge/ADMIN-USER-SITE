@@ -1,4 +1,4 @@
-const { db } = require('../../config/userfirebase');
+const { db } = require('../../config/firebase');
 
 exports.updateProfile = async (req, res) => {
   try {

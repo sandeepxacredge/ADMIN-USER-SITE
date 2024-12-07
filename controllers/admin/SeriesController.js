@@ -1,5 +1,5 @@
 const Series = require('../../models/admin/SeriesModel');
-const { db } = require('../../config/adminfirebase');
+const { db } = require('../../config/firebase');
 const { uploadMultipleFiles, deleteMultipleFiles, deleteFromFirebase } = require('../../utils/admin/FilesUpload');
 
 exports.createSeries = async (req, res) => {
